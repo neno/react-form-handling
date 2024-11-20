@@ -10,7 +10,22 @@ import { index, int, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = sqliteTableCreator((name) => `react-form-handling_${name}`);
+export const createTable = sqliteTableCreator(
+  (name) => `react-form-handling_${name}`,
+);
+
+export const user = createTable(
+  "users",
+  {
+    id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    name: text("name", { length: 256 }),
+    email: text("name", { length: 256 }),
+    password: text("name", { length: 256 }),
+  },
+  (users) => ({
+    emailIndex: index("email_idx").on(users.email),
+  }),
+);
 
 export const posts = createTable(
   "post",
@@ -21,10 +36,10 @@ export const posts = createTable(
       .default(sql`(unixepoch())`)
       .notNull(),
     updatedAt: int("updated_at", { mode: "timestamp" }).$onUpdate(
-      () => new Date()
+      () => new Date(),
     ),
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
-  })
+  }),
 );
