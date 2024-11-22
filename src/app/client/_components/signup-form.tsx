@@ -21,6 +21,23 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 
+type ErrorMessage = {
+  message: string;
+};
+
+type ErrorState = {
+  name?: ErrorMessage;
+  email?: ErrorMessage;
+  password?: ErrorMessage;
+};
+
+async function sendToServer(formValues: SignupFormSchema) {
+  return await fetch("/api/clients", {
+    method: "POST",
+    body: JSON.stringify(formValues),
+  });
+}
+
 export function SignupForm() {
   const form = useForm<SignupFormSchema>({
     resolver: zodResolver(SignupFormSchema),
@@ -31,9 +48,17 @@ export function SignupForm() {
     },
   });
 
-  const onValid = () => {
-    console.log("SUCCESS!");
-    console.log(form.getValues());
+  const onValid = async () => {
+    const values = form.getValues();
+    const res = await sendToServer(values);
+    const data = (await res.json()) as { errors?: ErrorState };
+    // console.log("Result from API", data);
+
+    if (data.errors) {
+      if (data.errors.email) {
+        form.setError("email", data.errors.email);
+      }
+    }
   };
 
   return (
