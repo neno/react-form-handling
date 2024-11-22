@@ -12,4 +12,5 @@ export default {
     "^~/app/(.*)$",
     "^./(.*)$",
   ],
+  importOrderSortSpecifiers: true,
 };
