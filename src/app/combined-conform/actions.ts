@@ -21,17 +21,12 @@ const SignupFormSchema = z.object({
 export async function signupWithConform(state: unknown, formData: FormData) {
   const submission = parseWithZod(formData, { schema: SignupFormSchema });
 
-  // return submission.reply({ resetForm: false });
-
   if (submission.status !== "success") {
     return submission.reply({ resetForm: false });
   }
 
   if (submission.payload.email === "neno@neno.ch") {
     return submission.reply({
-      // payload: submission.payload,
-
-      formErrors: ["Invalid form data."],
       fieldErrors: { email: ["Email already taken."] },
     });
   }
