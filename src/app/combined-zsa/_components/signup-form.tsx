@@ -34,7 +34,14 @@ export function SignupForm() {
 
   const { execute } = useServerAction(signup, {
     onError: ({ err }) => {
-      console.log(err.message);
+      const { inputParseErrors } = JSON.parse(err.data) as {
+        inputParseErrors: Record<string, string>;
+      };
+      for (const key in inputParseErrors) {
+        form.setError(key as "name" | "email" | "password" | "root", {
+          message: inputParseErrors[key]!,
+        });
+      }
     },
     onSuccess: () => {
       console.log("SUCCESS!");
@@ -86,7 +93,7 @@ export function SignupForm() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input {...field} type="password" />
                     </FormControl>
