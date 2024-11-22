@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { signup } from "~/app/signup/actions";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -11,7 +12,6 @@ import {
 } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { signup } from "~/app/signup/actions";
 
 export function SignupForm() {
   const [state, action, isPending] = useActionState(signup, undefined);

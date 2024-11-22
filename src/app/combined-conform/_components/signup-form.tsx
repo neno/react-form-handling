@@ -1,7 +1,9 @@
 "use client";
 
-import { useActionState } from "react";
+import { signupWithConform } from "../actions";
 import { useForm } from "@conform-to/react";
+import { parseWithZod } from "@conform-to/zod";
+import { useActionState } from "react";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -12,9 +14,7 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { parseWithZod } from "@conform-to/zod";
 import { SignupFormSchema } from "~/types/users";
-import { signupWithConform } from "../actions";
 
 export function SignupForm() {
   const [lastResult, action, isPending] = useActionState(

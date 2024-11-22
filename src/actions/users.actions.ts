@@ -1,7 +1,7 @@
 "use server";
 
-import { sleep } from "~/lib/utils";
 import { redirect } from "next/navigation";
+import { sleep } from "~/lib/utils";
 import { SignupFormSchema } from "~/types/users";
 
 type SignupFormState =

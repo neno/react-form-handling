@@ -1,7 +1,8 @@
 "use client";
 
-import { FormProvider, useForm } from "react-hook-form";
+import { signup } from "../actions";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm } from "react-hook-form";
 import { useServerAction } from "zsa-react";
 import { Button } from "~/components/ui/button";
 import {
@@ -11,9 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { Input } from "~/components/ui/input";
-import { SignupFormSchema } from "~/types/users";
-import { signup } from "../actions";
 import {
   FormControl,
   FormField,
@@ -21,6 +19,8 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
+import { SignupFormSchema } from "~/types/users";
 
 export function SignupForm() {
   const form = useForm<SignupFormSchema>({

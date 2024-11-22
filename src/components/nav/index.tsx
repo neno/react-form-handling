@@ -1,8 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { Separator } from "../ui/separator";
-
+import { usePathname } from "next/navigation";
 import { NavItem } from "./nav-item";
 
 export function Nav() {

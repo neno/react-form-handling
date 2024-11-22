@@ -1,6 +1,5 @@
-import "server-only";
-
 import { eq } from "drizzle-orm";
+import "server-only";
 import { db } from "~/server/db";
 import { type InsertUser, type SelectUser, users } from "~/server/db/schema";
 

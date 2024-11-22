@@ -1,7 +1,7 @@
 "use client";
 
-import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm } from "react-hook-form";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -10,9 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { Input } from "~/components/ui/input";
-import { SignupFormSchema } from "~/types/users";
-
 import {
   FormControl,
   FormField,
@@ -20,6 +17,8 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
+import { SignupFormSchema } from "~/types/users";
 
 type ErrorMessage = {
   message: string;
