@@ -14,32 +14,18 @@ export const createTable = sqliteTableCreator(
   (name) => `react-form-handling_${name}`,
 );
 
-export const user = createTable(
+export const users = createTable(
   "users",
   {
     id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-    name: text("name", { length: 256 }),
-    email: text("name", { length: 256 }),
-    password: text("name", { length: 256 }),
+    name: text("name", { length: 256 }).notNull(),
+    email: text("name", { length: 256 }).unique().notNull(),
+    password: text("name", { length: 256 }).notNull(),
   },
   (users) => ({
     emailIndex: index("email_idx").on(users.email),
   }),
 );
 
-export const posts = createTable(
-  "post",
-  {
-    id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-    name: text("name", { length: 256 }),
-    createdAt: int("created_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
-      .notNull(),
-    updatedAt: int("updated_at", { mode: "timestamp" }).$onUpdate(
-      () => new Date(),
-    ),
-  },
-  (example) => ({
-    nameIndex: index("name_idx").on(example.name),
-  }),
-);
+export type InsertUser = typeof users.$inferInsert;
+export type SelectUser = typeof users.$inferSelect;
