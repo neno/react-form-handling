@@ -43,7 +43,11 @@ export function SignupForm() {
               <Input
                 key={fields.name.key}
                 name={fields.name.name}
-                defaultValue={fields.name.initialValue}
+                // defaultValue={fields.name.initialValue}
+                // @ts-expect-error "not yet fully compatible with useActionState - form values are reset"
+                defaultValue={
+                  lastResult?.initialValue?.name ?? fields.name.initialValue
+                }
                 id="name"
                 placeholder="John Doe"
               />
@@ -57,7 +61,11 @@ export function SignupForm() {
               <Input
                 key={fields.email.key}
                 name={fields.email.name}
-                defaultValue={fields.email.initialValue}
+                // defaultValue={fields.email.initialValue}
+                // @ts-expect-error "not yet fully compatible with useActionState - form values are reset"
+                defaultValue={
+                  lastResult?.initialValue?.email ?? fields.email.initialValue
+                }
                 id="email"
                 placeholder="john@example.com"
               />
@@ -70,7 +78,12 @@ export function SignupForm() {
               <Input
                 key={fields.password.key}
                 name={fields.password.name}
-                defaultValue={fields.password.initialValue}
+                // defaultValue={fields.password.initialValue}
+                // @ts-expect-error "not yet fully compatible with useActionState - form values are reset"
+                defaultValue={
+                  lastResult?.initialValue?.password ??
+                  fields.password.initialValue
+                }
                 id="password"
                 type="password"
               />
