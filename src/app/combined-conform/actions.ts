@@ -9,5 +9,14 @@ export async function signupWithConform(state: unknown, formData: FormData) {
     return submission.reply();
   }
 
+  if (submission.payload.email === "neno@neno.ch") {
+    return submission.reply({
+      // payload: submission.payload,
+
+      formErrors: ["Invalid form data."],
+      fieldErrors: { email: ["Email already taken."] },
+    });
+  }
+
   redirect("/success");
 }

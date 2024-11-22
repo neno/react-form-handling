@@ -20,7 +20,7 @@ const schemaKeys = Object.entries(SignupFormSchema.shape).flatMap(
 );
 
 export async function signup(state: SignupFormState, formData: FormData) {
-  // Simulate low network
+  // Simulate slow network
   await sleep(2);
 
   // save original form data for returning on error and populating the form with default values
