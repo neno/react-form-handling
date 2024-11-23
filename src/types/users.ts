@@ -6,8 +6,8 @@ export const SignupFormSchema = z.object({
     .min(1, "Name is required")
     .max(256, "Name cannot contain more than 256 characters"),
   email: z
-    .string()
-    .min(1, "Email is required")
+    .string({ message: "Email is required" })
+    // .min(1, "Email is required")
     .max(256, "Email must contain at most 256 characters")
     .email(),
   password: z
