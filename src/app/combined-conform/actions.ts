@@ -1,6 +1,7 @@
 import { parseWithZod } from "@conform-to/zod";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { sleep } from "~/lib/utils";
 
 const SignupFormSchema = z.object({
   name: z
@@ -9,7 +10,7 @@ const SignupFormSchema = z.object({
     .max(256, "Name cannot contain more than 256 characters"),
   email: z
     .string()
-    .min(20, "Email must contain at most 256 characters")
+    .max(256, "Email must contain at most 256 characters")
     .email(),
   password: z
     .string()
@@ -18,6 +19,7 @@ const SignupFormSchema = z.object({
 });
 
 export async function signupWithConform(state: unknown, formData: FormData) {
+  await sleep(2);
   const submission = parseWithZod(formData, { schema: SignupFormSchema });
 
   if (submission.status !== "success") {
