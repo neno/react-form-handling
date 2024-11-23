@@ -56,7 +56,10 @@ export function SignupForm() {
       </CardHeader>
       <CardContent>
         <FormProvider {...form}>
-          <form onSubmit={form.handleSubmit((values) => execute(values))}>
+          <form
+            onSubmit={form.handleSubmit((values) => execute(values))}
+            noValidate
+          >
             <div className="grid gap-4">
               <FormField
                 control={form.control}

@@ -11,12 +11,7 @@ export const signup = createServerAction()
       throw new ZSAError("INPUT_PARSE_ERROR", {
         inputParseErrors: { email: "Email already taken." },
       });
-
-      // throw new ZSAError("CONFLICT", "Email already taken.", { error: { fieldErrors} });
-      // });
     }
 
-    // console.log("input", input);
-    // return { success: true };
     redirect("/success");
   });

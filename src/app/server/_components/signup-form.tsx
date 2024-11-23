@@ -24,7 +24,7 @@ export function SignupForm() {
         {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
       </CardHeader>
       <CardContent>
-        <form action={action}>
+        <form action={action} noValidate>
           <div className="grid gap-4">
             <div>
               <Label htmlFor="name">Name</Label>
@@ -43,6 +43,7 @@ export function SignupForm() {
               <Input
                 id="email"
                 name="email"
+                type="email"
                 placeholder="john@example.com"
                 defaultValue={state?.fields?.email ?? ""}
               />

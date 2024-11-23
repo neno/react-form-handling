@@ -36,7 +36,7 @@ export function SignupForm() {
         <CardDescription>Only server validation</CardDescription>
       </CardHeader>
       <CardContent>
-        <form id={form.id} onSubmit={form.onSubmit} action={action}>
+        <form id={form.id} onSubmit={form.onSubmit} action={action} noValidate>
           <div className="grid gap-4">
             <div>
               <Label htmlFor="name">Name</Label>
